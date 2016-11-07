@@ -1,0 +1,14 @@
+version: '2' 
+services: 
+ wechat-backend:
+   restart: always
+   image: registry.vcredit.com/o2o/wechat-backend
+   volumes:
+      - /etc/localtime:/etc/localtime
+   ports:
+   - 4100:2000
+   environment:
+    NODE_ENV: development
+    PORT: 2000
+   container_name: wechat-backend
+   mem_limit: 2g

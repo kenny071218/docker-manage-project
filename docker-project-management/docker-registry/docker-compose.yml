@@ -1,0 +1,14 @@
+version: '2' 
+services: 
+ docker-registry:
+   restart: always
+   image: daocloud.io/library/registry:2.4.1
+   volumes:
+   - /home/vcredit/dockerData/docker-registry:/var/lib/registry
+   - /etc/localtime:/etc/localtime
+   environment:
+    STORAGE_PATH: /tmp/registry
+   ports:
+   - 5000:5000
+   container_name: docker-registry
+   mem_limit: 2g

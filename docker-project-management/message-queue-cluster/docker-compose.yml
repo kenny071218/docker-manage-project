@@ -1,0 +1,47 @@
+version: '2'
+services:
+  rabbit-stats:
+    restart: always
+    image: registry.vcredit.com/o2o/rabbit-cluster
+    hostname: rabbit-stats
+    environment:
+      - ERLANG_COOKIE=abcdefg
+    volumes:
+       - /home/vcredit/dockerData/rabbitMQ/stats:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    container_name: rabbit-stats
+    mem_limit: 4g
+  rabbit-server-1:
+    restart: always
+    image: registry.vcredit.com/o2o/rabbit-cluster
+    hostname: rabbit-server-1
+    links:
+      - rabbit-stats
+    environment:
+      - ERLANG_COOKIE=abcdefg
+      - CLUSTER_WITH=rabbit-stats
+      - ENABLE_RAM=true
+    volumes:
+      - /home/vcredit/dockerData/rabbitMQ/server1:/var/lib/rabbitmq
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    container_name: rabbit-server-1
+    mem_limit: 4g
+#  rabbit-server-2:
+#    image: registry.vcredit.com/o2o/rabbit-cluster
+#    hostname: rabbit-server-2
+#    links:
+#      - rabbit-stats
+#      - rabbit-server-1
+#    environment:
+#      - ERLANG_COOKIE=abcdefg
+#      - CLUSTER_WITH=rabbit-stats
+#      - ENABLE_RAM=true
+#    volumes:
+#      - /home/vcredit/dockerData/rabbitMQ/server2:/var/lib/rabbitmq
+#    ports:
+#      - "5674:5672"
+#    container_name: rabbit-server-2

@@ -1,0 +1,11 @@
+version: '2'
+services:
+ mongodb:
+   image: daocloud.io/library/mongo:3.2.4
+   volumes:
+   - /home/kenny/data/o2o-mongodb:/data/db
+   - /home/kenny/data/o2o-mongodb-backup:/data/backup
+   ports:
+   - 27017:27017
+   container_name: o2o-mongodb
+   mem_limit: 2g

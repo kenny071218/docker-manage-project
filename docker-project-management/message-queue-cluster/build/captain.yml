@@ -1,0 +1,5 @@
+version: '2'
+services:
+  rabbitmq-cluster:
+    build: .
+    image: registry.vcredit.com/o2o/rabbit-cluster

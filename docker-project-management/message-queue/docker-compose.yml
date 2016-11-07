@@ -1,0 +1,18 @@
+version: '2'
+services:
+ message-queue:
+   restart: always
+   image: daocloud.io/rabbitmq:3.6.2-management
+   ports:
+   - 8989:15672
+   - 5672:5672
+   volumes:
+   - /home/vcredit/dockerData/rabbitMQ:/var/lib/rabbitmq
+   hostname: o2o-rabbit-mq
+   environment:
+    RABBITMQ_DEFAULT_USER: o2o-user
+    RABBITMQ_DEFAULT_PASS: o2o-password
+#    RABBITMQ_DEFAULT_VHOST: o2o-message-mq
+    RABBITMQ_ERLANG_COOKIE: o2o-message-queue-cookie
+   container_name: o2o-rabbit
+   mem_limit: 4g

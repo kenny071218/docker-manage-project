@@ -1,0 +1,17 @@
+version: '2' 
+services: 
+ api-external:
+   restart: always
+   image: registry.vcredit.com/o2o/api-app
+   volumes:
+   - /home/vcredit/dockerData/api-external:/tmp
+   - /etc/localtime:/etc/localtime
+   extra_hosts:
+    29net_crawler: 10.1.12.29
+   environment:
+    SPRING_CONFIG_LOCATION: classpath:/application.yml
+    NODE_ENV: development
+   ports:
+   - 9100:7000
+   container_name: api-external
+   mem_limit: 4g

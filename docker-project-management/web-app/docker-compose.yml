@@ -1,0 +1,9 @@
+version: '2'
+services:
+ web-app:
+   restart: always
+   image: registry.vcredit.com/o2o/web-app
+   ports:
+   - 3000:3000
+   container_name: web-app
+   mem_limit: 1g

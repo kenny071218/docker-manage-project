@@ -1,0 +1,16 @@
+version: '2' 
+services: 
+ api-app:
+   restart: always
+   image: registry.vcredit.com/o2o/api-app
+   volumes:
+   - /home/vcredit/dockerData/api-app:/tmp
+   - /etc/localtime:/etc/localtime
+   extra_hosts:
+    29net_crawler: 10.1.12.29
+   environment:
+    SPRING_CONFIG_LOCATION: classpath:/application.yml
+   ports:
+   - 9000:9000
+   container_name: api-app
+   mem_limit: 4g

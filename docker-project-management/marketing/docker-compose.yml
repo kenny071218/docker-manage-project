@@ -1,0 +1,12 @@
+version: '2' 
+services: 
+ marketing:
+   image: registry.vcredit.com/o2o/marketing
+   ports:
+   - 3100:80
+   environment:
+    NODE_ENV: development
+    DOCKER: 1
+    PORT: 3000
+   container_name: marketing
+   mem_limit: 2g
